@@ -22,45 +22,72 @@ public class GeneratorConfigProvider {
     }
 
     public TableConfig getTableConfig() {
-        if (xmlConfig.getTableConfig() != null) {
-            return xmlConfig.getTableConfig();
+        if (pomConfig.getTableConfig() != null) {
+            return pomConfig.getTableConfig();
         }
-        return pomConfig.getTableConfig();
+        return xmlConfig.getTableConfig();
     }
 
     public ColumnConfig getColumnConfig() {
-        return null;
+        if (pomConfig.getColumnConfig() != null) {
+            return pomConfig.getColumnConfig();
+        }
+        return xmlConfig.getColumnConfig();
     }
 
     public EntityConfig getEntityConfig() {
-        return null;
+        if (pomConfig.getEntityConfig() != null) {
+            return pomConfig.getEntityConfig();
+        }
+        return xmlConfig.getEntityConfig();
     }
 
     public MapperConfig getMapperConfig() {
-        return null;
+        if (pomConfig.getMapperConfig() != null) {
+            return pomConfig.getMapperConfig();
+        }
+        return pomConfig.getMapperConfig();
     }
 
     public MapperXmlConfig getMapperXmlConfig() {
-        return null;
+        if (pomConfig.getMapperXmlConfig() != null) {
+            return pomConfig.getMapperXmlConfig();
+        }
+        return xmlConfig.getMapperXmlConfig();
     }
 
     public DaoConfig getDaoConfig() {
-        return null;
+        if (pomConfig.getDaoConfig() != null) {
+            return pomConfig.getDaoConfig();
+        }
+        return xmlConfig.getDaoConfig();
     }
 
     public DaoImplConfig getDaoImplConfig() {
-        return null;
+        if (pomConfig.getDaoImplConfig() != null) {
+            return pomConfig.getDaoImplConfig();
+        }
+        return xmlConfig.getDaoImplConfig();
     }
 
     public ServiceConfig getServiceConfig() {
-        return null;
+        if (pomConfig.getServiceConfig() != null) {
+            return pomConfig.getServiceConfig();
+        }
+        return xmlConfig.getServiceConfig();
     }
 
     public ServiceImplConfig getServiceImplConfig() {
-        return null;
+        if (pomConfig.getServiceImplConfig() != null) {
+            return pomConfig.getServiceImplConfig();
+        }
+        return xmlConfig.getServiceImplConfig();
     }
 
     public ActionConfig getActionConfig() {
-        return null;
+        if (pomConfig.getActionConfig() != null) {
+            return pomConfig.getActionConfig();
+        }
+        return xmlConfig.getActionConfig();
     }
 }

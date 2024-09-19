@@ -69,17 +69,18 @@ public class MybatisMpGeneratorMojo extends AbstractGeneratorConfigMojo {
                 configurationFile);
 
         // TODO 怎么方便的给设置属性
-        generatorConfig
-                .tableConfig(tc -> tc = confProvider.getTableConfig())
-                .columnConfig(cc -> cc = confProvider.getColumnConfig())
-                .entityConfig(ec -> ec = confProvider.getEntityConfig())
-                .mapperConfig(mc -> mc = confProvider.getMapperConfig())
-                .mapperXmlConfig(xc -> xc = confProvider.getMapperXmlConfig())
-                .daoConfig(dao -> dao = confProvider.getDaoConfig())
-                .daoImplConfig(daoImpl -> daoImpl = confProvider.getDaoImplConfig())
-                .serviceConfig(sc -> sc = confProvider.getServiceConfig())
-                .serviceImplConfig(scImpl -> scImpl = confProvider.getServiceImplConfig())
-                .actionConfig(ac -> ac = confProvider.getActionConfig());
+        // TODO 考虑使用反射处理属性注入
+//        generatorConfig
+//                .tableConfig(tc -> tc = confProvider.getTableConfig())
+//                .columnConfig(cc -> cc = confProvider.getColumnConfig())
+//                .entityConfig(ec -> ec = confProvider.getEntityConfig())
+//                .mapperConfig(mc -> mc = confProvider.getMapperConfig())
+//                .mapperXmlConfig(xc -> xc = confProvider.getMapperXmlConfig())
+//                .daoConfig(dao -> dao = confProvider.getDaoConfig())
+//                .daoImplConfig(daoImpl -> daoImpl = confProvider.getDaoImplConfig())
+//                .serviceConfig(sc -> sc = confProvider.getServiceConfig())
+//                .serviceImplConfig(scImpl -> scImpl = confProvider.getServiceImplConfig())
+//                .actionConfig(ac -> ac = confProvider.getActionConfig());
 
         if (log.isDebugEnabled()) {
             log.debug("configuration info ：===================↓↓↓=====================");
