@@ -76,6 +76,7 @@
     </configuration>
 </plugin>
 ```
+### 运行maven命令 mvn  mvn mybatis-mp-generator:generate 即可
 
 ### 建议事项
 * 插件中 baseFilePath 默认为maven项目根目录
