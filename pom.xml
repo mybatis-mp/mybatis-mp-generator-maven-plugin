@@ -23,7 +23,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
-        <mybatis-mp.version>1.6.7</mybatis-mp.version>
+        <mybatis-mp.version>1.6.9</mybatis-mp.version>
         <junit.version>5.10.2</junit.version>
     </properties>
 
@@ -71,27 +71,66 @@
                 <version>3.9.0</version>
             </plugin>
 
+            <!-- 下面是测试本插件代码，执行前先insert本项目 -->
             <plugin>
                 <groupId>cn.mybatis.mp</groupId>
                 <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
                 <version>${project.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.19</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
+                    <author>trifolium</author>
+                    <fileCover>true</fileCover>
+                    <basePackage>src/main/java/cn.mybatis.mp.plugin.test</basePackage>
                     <dataSource>
-                        <username>xxx</username>
-                        <password>xxx</password>
-                        <jdbcUrl>jdbc:mysql:test.com:336/aaa</jdbcUrl>
+                        <username>root</username>
+                        <password>123456</password>
+                        <jdbcUrl>jdbc:mysql://xxx.xxx:3306/xxx</jdbcUrl>
                     </dataSource>
                     <tableConfig>
                         <tablePrefixs>
-                            <item>11111</item>
-                            <item>22222</item>
+                            <item>t_</item>
                         </tablePrefixs>
                         <includeTables>
-                            <item>table1</item>
-                            <item>table1</item>
-                            <item>table1</item>
+                            <item>t_admin</item>
+                            <item>t_admin_role</item>
                         </includeTables>
                     </tableConfig>
+                    <entityConfig>
+                        <packageName>entity</packageName>
+                        <swagger>true</swagger>
+                        <lombok>true</lombok>
+                    </entityConfig>
+                    <mapperConfig>
+                        <packageName>mapper</packageName>
+                        <mapperAnnotation>false</mapperAnnotation>
+                    </mapperConfig>
+                    <mapperXmlConfig>
+                        <enable>true</enable>
+                        <packageName>src/main/resources/mappers</packageName>
+                        <resultMap>true</resultMap>
+                        <columnList>true</columnList>
+                    </mapperXmlConfig>
+                    <daoConfig>
+                        <enable>false</enable>
+                    </daoConfig>
+                    <daoImplConfig>
+                        <enable>false</enable>
+                    </daoImplConfig>
+                    <serviceConfig>
+                        <enable>false</enable>
+                    </serviceConfig>
+                    <serviceImplConfig>
+                        <enable>false</enable>
+                    </serviceImplConfig>
+                    <actionConfig>
+                        <enable>false</enable>
+                    </actionConfig>
                 </configuration>
             </plugin>
         </plugins>

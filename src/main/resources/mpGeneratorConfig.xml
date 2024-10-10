@@ -1,1 +1,52 @@
-<
+<mp-generator-root>
+    <!-- 添加数据库配置，如果项目中已经包含可省略 -->
+    <dataSource>
+        <username>xxx</username>
+        <password>xxx</password>
+        <jdbcUrl>jdbc:mysql://mysql.com:3306/db</jdbcUrl>
+    </dataSource>
+
+    <author>trifolium</author>
+    <ignoreView>true</ignoreView>
+    <basePackage>src/main/java/cn.mybatis.mp.plugin.test</basePackage>
+    <!-- 按照官方文档配置各对象 -->
+    <tableConfig>
+        <tablePrefixs>
+            <item>t_</item>
+        </tablePrefixs>
+        <includeTables>
+            <item>t_admin</item>
+            <item>t_admin_role</item>
+        </includeTables>
+    </tableConfig>
+    <entityConfig>
+        <packageName>entity</packageName>
+        <swagger>true</swagger>
+        <lombok>true</lombok>
+    </entityConfig>
+    <mapperConfig>
+        <packageName>mapper</packageName>
+        <mapperAnnotation>false</mapperAnnotation>
+    </mapperConfig>
+    <mapperXmlConfig>
+        <enable>true</enable>
+        <packageName>src/main/resources/mappers</packageName>
+        <resultMap>true</resultMap>
+        <columnList>true</columnList>
+    </mapperXmlConfig>
+    <daoConfig>
+        <enable>false</enable>
+    </daoConfig>
+    <daoImplConfig>
+        <enable>false</enable>
+    </daoImplConfig>
+    <serviceConfig>
+        <enable>false</enable>
+    </serviceConfig>
+    <serviceImplConfig>
+        <enable>false</enable>
+    </serviceImplConfig>
+    <actionConfig>
+        <enable>false</enable>
+    </actionConfig>
+</mp-generator-root>

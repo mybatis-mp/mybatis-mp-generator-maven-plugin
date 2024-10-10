@@ -1,9 +1,12 @@
 package cn.mybatis.mp.plugin.generator;
 
+import cn.mybatis.mp.generator.FastGenerator;
 import cn.mybatis.mp.generator.config.GeneratorConfig;
 import cn.mybatis.mp.plugin.generator.configuration.AbstractGeneratorConfigMojo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -39,10 +42,10 @@ public class MybatisMpGeneratorMojo extends AbstractGeneratorConfigMojo {
             defaultValue = "${project.basedir}/mpGeneratorConfig.xml")
     protected File configurationFile;
 
-    public void execute() {
+    public void execute() throws MojoExecutionException {
         Log log = getLog();
         if (skip) {
-            log.info("MyBatisMp generator is skipped.");
+            log.info("mybatis-mp generator is skipped.");
             return;
         }
 
@@ -50,16 +53,23 @@ public class MybatisMpGeneratorMojo extends AbstractGeneratorConfigMojo {
                 dataSource.getUsername(), dataSource.getPassword());
         setIfPresent(containerType, generatorConfig::containerType);
         setIfPresent(ignoreView, generatorConfig::ignoreView);
-        setIfPresent(baseFilePath, (c) -> {
-            if (isBlank(c)) {
-                generatorConfig.baseFilePath(project.getBasedir().getAbsolutePath());
+
+        // 修改默认值
+        if (isBlank(baseFilePath)) {
+            generatorConfig.baseFilePath(project.getBasedir().getAbsolutePath());
+        } else {
+            if (baseFilePath.startsWith(File.separator)) {
+                generatorConfig.baseFilePath(baseFilePath);
+            } else {
+                generatorConfig.baseFilePath(project.getBasedir().getAbsolutePath() + File.separator + baseFilePath);
             }
-        });
-        setIfPresent(basePackage, (c) -> {
-            if (isBlank(c)) {
-                generatorConfig.basePackage(project.getGroupId());
-            }
-        });
+        }
+        if (isBlank(basePackage)) {
+            generatorConfig.basePackage(project.getGroupId());
+        } else {
+            generatorConfig.basePackage(basePackage);
+        }
+
         setIfPresent(templateRootPath, generatorConfig::templateRootPath);
         setIfPresent(swaggerVersion, generatorConfig::swaggerVersion);
         setIfPresent(author, generatorConfig::author);
@@ -68,34 +78,49 @@ public class MybatisMpGeneratorMojo extends AbstractGeneratorConfigMojo {
         GeneratorConfigProvider confProvider = new GeneratorConfigProvider(this,
                 configurationFile);
 
-        // TODO 怎么方便的给设置属性
-        // TODO 考虑使用反射处理属性注入
-//        generatorConfig
-//                .tableConfig(tc -> tc = confProvider.getTableConfig())
-//                .columnConfig(cc -> cc = confProvider.getColumnConfig())
-//                .entityConfig(ec -> ec = confProvider.getEntityConfig())
-//                .mapperConfig(mc -> mc = confProvider.getMapperConfig())
-//                .mapperXmlConfig(xc -> xc = confProvider.getMapperXmlConfig())
-//                .daoConfig(dao -> dao = confProvider.getDaoConfig())
-//                .daoImplConfig(daoImpl -> daoImpl = confProvider.getDaoImplConfig())
-//                .serviceConfig(sc -> sc = confProvider.getServiceConfig())
-//                .serviceImplConfig(scImpl -> scImpl = confProvider.getServiceImplConfig())
-//                .actionConfig(ac -> ac = confProvider.getActionConfig());
-
+        fillGeneratorConfig(generatorConfig, confProvider);
         if (log.isDebugEnabled()) {
             log.debug("configuration info ：===================↓↓↓=====================");
-            log.debug(ReflectionToStringBuilder.toString(this));
-            log.debug(ReflectionToStringBuilder.toString(confProvider.getTableConfig()));
-            log.debug(ReflectionToStringBuilder.toString(confProvider.getColumnConfig()));
-            log.debug(ReflectionToStringBuilder.toString(confProvider.getEntityConfig()));
-            log.debug(ReflectionToStringBuilder.toString(confProvider.getMapperConfig()));
-            log.debug(ReflectionToStringBuilder.toString(confProvider.getMapperXmlConfig()));
-            log.debug(ReflectionToStringBuilder.toString(confProvider.getDaoConfig()));
-            log.debug(ReflectionToStringBuilder.toString(confProvider.getDaoImplConfig()));
-            log.debug(ReflectionToStringBuilder.toString(confProvider.getServiceConfig()));
-            log.debug(ReflectionToStringBuilder.toString(confProvider.getServiceImplConfig()));
-            log.debug(ReflectionToStringBuilder.toString(confProvider.getActionConfig()));
+            log.debug("generatorConfig: " + objToJson(this));
+            log.debug("TableConfig: " + objToJson(generatorConfig.getTableConfig()));
+            log.debug("ActionConfig: " + objToJson(generatorConfig.getActionConfig()));
+            log.debug("ColumnConfig: " + objToJson(generatorConfig.getColumnConfig()));
+            log.debug("DaoConfig: " + objToJson(generatorConfig.getDaoConfig()));
+            log.debug("MapperConfig: " + objToJson(generatorConfig.getMapperConfig()));
+            log.debug("EntityConfig: " + objToJson(generatorConfig.getEntityConfig()));
+            log.debug("ServiceConfig: " + objToJson(generatorConfig.getServiceConfig()));
+            log.debug("MapperXmlConfig: " + objToJson(generatorConfig.getMapperXmlConfig()));
+            log.debug("TableConfig: " + objToJson(generatorConfig.getDaoImplConfig()));
+            log.debug("ServiceImplConfig: " + objToJson(generatorConfig.getServiceImplConfig()));
             log.debug("configuration info ：===================↑↑↑=====================");
+        }
+
+        try {
+            log.info("mybatis-mp-generator start");
+            new FastGenerator(generatorConfig).create();
+            log.info("mybatis-mp-generator success");
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            throw new MojoExecutionException(e.getMessage(), e);
+        }
+    }
+
+    private void fillGeneratorConfig(GeneratorConfig generatorConfig, GeneratorConfigProvider confProvider) {
+        ifNotNull(confProvider.getTableConfig(), generatorConfig::setTableConfig);
+        ifNotNull(confProvider.getActionConfig(), generatorConfig::setActionConfig);
+        ifNotNull(confProvider.getColumnConfig(), generatorConfig::setColumnConfig);
+        ifNotNull(confProvider.getDaoConfig(), generatorConfig::setDaoConfig);
+        ifNotNull(confProvider.getMapperConfig(), generatorConfig::setMapperConfig);
+        ifNotNull(confProvider.getEntityConfig(), generatorConfig::setEntityConfig);
+        ifNotNull(confProvider.getServiceConfig(), generatorConfig::setServiceConfig);
+        ifNotNull(confProvider.getMapperXmlConfig(), generatorConfig::setMapperXmlConfig);
+        ifNotNull(confProvider.getDaoImplConfig(), generatorConfig::setDaoImplConfig);
+        ifNotNull(confProvider.getServiceImplConfig(), generatorConfig::setServiceImplConfig);
+    }
+
+    private <T> void ifNotNull(T t, Consumer<T> consumer) {
+        if (t != null) {
+            consumer.accept(t);
         }
     }
 
@@ -111,5 +136,12 @@ public class MybatisMpGeneratorMojo extends AbstractGeneratorConfigMojo {
         } else if (value != null) {
             consumer.accept(value);
         }
+    }
+
+    private String objToJson(Object obj) {
+        if (obj == null) {
+            return "";
+        }
+        return ReflectionToStringBuilder.toString(obj, ToStringStyle.JSON_STYLE);
     }
 }
