@@ -36,7 +36,7 @@ public class MybatisMpGeneratorMojo extends AbstractGeneratorConfigMojo {
      * 如果同时配置，pom文件中的优先级大于配置文件
      */
     @Parameter(property = "mybatis.mp.generator.configurationFile",
-            defaultValue = "${project.basedir}/src/main/resources/mpGeneratorConfig.xml")
+            defaultValue = "${project.basedir}/mpGeneratorConfig.xml")
     protected File configurationFile;
 
     public void execute() {

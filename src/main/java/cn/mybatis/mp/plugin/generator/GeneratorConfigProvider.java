@@ -46,7 +46,7 @@ public class GeneratorConfigProvider {
         if (pomConfig.getMapperConfig() != null) {
             return pomConfig.getMapperConfig();
         }
-        return pomConfig.getMapperConfig();
+        return xmlConfig.getMapperConfig();
     }
 
     public MapperXmlConfig getMapperXmlConfig() {

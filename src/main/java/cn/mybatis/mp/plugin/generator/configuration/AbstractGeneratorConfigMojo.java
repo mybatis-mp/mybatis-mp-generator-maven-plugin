@@ -75,8 +75,6 @@ public abstract class AbstractGeneratorConfigMojo extends AbstractMojo {
     @Parameter(name = "fileCover", defaultValue = "true")
     protected boolean fileCover;
 
-
-
     /**
      * 配置 TableConfig(表配置)
      */
