@@ -23,7 +23,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
-        <mybatis-mp.version>1.6.9</mybatis-mp.version>
+        <mybatis-mp.version>1.7.0-RC</mybatis-mp.version>
         <junit.version>5.10.2</junit.version>
     </properties>
 
