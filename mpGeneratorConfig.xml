@@ -1,39 +1,50 @@
-<mp-generator-root>
-    <!-- 添加数据库配置，如果项目中已经包含可省略 -->
+<mp-generator>
+    <!-- 按照官方文档配置各对象 -->
+    <author>trifolium</author>
+    <fileCover>true</fileCover>
+    <ignoreView>true</ignoreView>
+
     <dataSource>
-        <username>xxx</username>
-        <password>xxx</password>
-        <jdbcUrl>jdbc:mysql://mysql.com:3306/db</jdbcUrl>
+        <username>root</username>
+        <password>123456</password>
+        <jdbcUrl>jdbc:mysql://xxx:3306/xxx</jdbcUrl>
     </dataSource>
 
-    <author>trifolium</author>
-    <ignoreView>true</ignoreView>
-    <basePackage>src/main/java/cn.mybatis.mp.plugin.test</basePackage>
-    <!-- 按照官方文档配置各对象 -->
     <tableConfig>
         <tablePrefixs>
-            <item>t_</item>
+            <string>t_</string>
         </tablePrefixs>
         <includeTables>
-            <item>t_admin</item>
-            <item>t_admin_role</item>
+            <string>t_admin</string>
+            <string>t_admin_role</string>
         </includeTables>
     </tableConfig>
+
+<!--    <javaPath>src/main/java</javaPath>-->
+<!--    <resourcePath>src/main/resources</resourcePath>-->
+
+    <basePackage>cn.mybatis.mp.plugin.test</basePackage>
+
     <entityConfig>
         <packageName>entity</packageName>
         <swagger>true</swagger>
         <lombok>true</lombok>
     </entityConfig>
+
+<!--    <basePackage>aaa</basePackage>-->
     <mapperConfig>
         <packageName>mapper</packageName>
         <mapperAnnotation>false</mapperAnnotation>
     </mapperConfig>
+
     <mapperXmlConfig>
         <enable>true</enable>
-        <packageName>src/main/resources/mappers</packageName>
+        <packageName>/mappers</packageName>
         <resultMap>true</resultMap>
         <columnList>true</columnList>
     </mapperXmlConfig>
+
+
     <daoConfig>
         <enable>false</enable>
     </daoConfig>
@@ -49,4 +60,4 @@
     <actionConfig>
         <enable>false</enable>
     </actionConfig>
-</mp-generator-root>
+</mp-generator>

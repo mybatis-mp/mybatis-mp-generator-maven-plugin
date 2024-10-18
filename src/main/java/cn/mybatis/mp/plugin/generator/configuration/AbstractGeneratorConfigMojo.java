@@ -14,8 +14,8 @@ public abstract class AbstractGeneratorConfigMojo extends AbstractMojo {
     /**
      * 数据源配置
      */
-    @Parameter(name = "dataSource", required = true)
-    protected DataSourceConfig dataSource;
+    @Parameter(name = "dataSource")
+    private DataSourceConfig dataSource;
 
     /**
      * 容器类型，默认SPRING
@@ -23,117 +23,129 @@ public abstract class AbstractGeneratorConfigMojo extends AbstractMojo {
      * 目前支持，SPRING、SOLON
      */
     @Parameter(name = "containerType", defaultValue = "SPRING")
-    protected ContainerType containerType;
+    private ContainerType containerType;
 
     /**
      * 是否忽略视图
      */
     @Parameter(name = "ignoreView", defaultValue = "false")
-    protected boolean ignoreView;
+    private boolean ignoreView;
+
+    /**
+     * java源码相对baseFilePath路径，默认值 src/main/java
+     */
+    @Parameter(name = "javaPath")
+    private String javaPath;
+
+    /**
+     * 资源目录相对baseFilePath路径, 默认值 src/main/resources
+     */
+    @Parameter(name = "resourcePath")
+    private String resourcePath;
 
     /**
      * 是否忽略表
      */
     @Parameter(name = "ignoreTable", defaultValue = "false")
-    protected boolean ignoreTable;
+    private boolean ignoreTable;
 
     /**
      * 根文件路径
      * 默认值 project.dir(模块根目录)
      */
     @Parameter(name = "baseFilePath")
-    protected String baseFilePath;
+    private String baseFilePath;
 
     /**
      * 根包路径
-     * 默认路径为 project.groupId
+     * 默认路径为""
      */
     @Parameter(name = "basePackage")
-    protected String basePackage;
+    private String basePackage;
 
     /**
      * 模板根目录，默认即可
      */
     @Parameter(name = "templateRootPath", defaultValue = "templates")
-    protected String templateRootPath;
+    private String templateRootPath;
 
     /**
      * 作者
      */
     @Parameter(name = "author")
-    protected String author;
+    private String author;
 
     /**
      * swagger版本：2 代表2.x，3代表3.x
      */
     @Parameter(name = "swaggerVersion", defaultValue = "3")
-    protected int swaggerVersion;
+    private int swaggerVersion;
 
     /**
      * 是否覆盖
      */
     @Parameter(name = "fileCover", defaultValue = "true")
-    protected boolean fileCover;
+    private boolean fileCover;
 
     /**
      * 配置 TableConfig(表配置)
      */
     @Parameter(name = "tableConfig")
-    protected TableConfig tableConfig;
+    private TableConfig tableConfig;
 
     /**
      * 配置 ColumnConfig(列配置)
      */
     @Parameter(name = "columnConfig")
-    protected ColumnConfig columnConfig;
+    private ColumnConfig columnConfig;
 
     /**
      * 配置 EntityConfig(实体类配置)
      */
     @Parameter(name = "entityConfig")
-    protected EntityConfig entityConfig;
+    private EntityConfig entityConfig;
 
     /**
      * 配置 MapperConfig(mapper类配置)
      */
     @Parameter(name = "mapperConfig")
-    protected MapperConfig mapperConfig;
+    private MapperConfig mapperConfig;
 
     /**
      * 配置 MapperXmlConfig(mapper xml配置)
      */
     @Parameter(name = "mapperXmlConfig")
-    protected MapperXmlConfig mapperXmlConfig;
+    private MapperXmlConfig mapperXmlConfig;
 
     /**
      * 配置 DaoConfig(dao接口配置)
      */
     @Parameter(name = "daoConfig")
-    protected DaoConfig daoConfig;
+    private DaoConfig daoConfig;
 
     /**
      * 配置 DaoImplConfig(dao接口实现类的配置)
      */
     @Parameter(name = "daoImplConfig")
-    protected DaoImplConfig daoImplConfig;
+    private DaoImplConfig daoImplConfig;
 
     /**
      * 配置 ServiceConfig(service接口配置)
      */
     @Parameter(name = "serviceConfig")
-    protected ServiceConfig serviceConfig;
+    private ServiceConfig serviceConfig;
 
     /**
      * 配置 ServiceImplConfig(service接口实现类的配置)
      */
     @Parameter(name = "serviceImplConfig")
-    protected ServiceImplConfig serviceImplConfig;
+    private ServiceImplConfig serviceImplConfig;
 
     /**
      * 配置 ActionConfig(action实现类的配置)
      */
     @Parameter(name = "actionConfig")
-    protected ActionConfig actionConfig;
+    private ActionConfig actionConfig;
 
 
     public TableConfig getTableConfig() {
@@ -214,5 +226,101 @@ public abstract class AbstractGeneratorConfigMojo extends AbstractMojo {
 
     public void setActionConfig(ActionConfig actionConfig) {
         this.actionConfig = actionConfig;
+    }
+
+    public String getJavaPath() {
+        return javaPath;
+    }
+
+    public void setJavaPath(String javaPath) {
+        this.javaPath = javaPath;
+    }
+
+    public String getResourcePath() {
+        return resourcePath;
+    }
+
+    public void setResourcePath(String resourcePath) {
+        this.resourcePath = resourcePath;
+    }
+
+    public boolean isIgnoreTable() {
+        return ignoreTable;
+    }
+
+    public void setIgnoreTable(boolean ignoreTable) {
+        this.ignoreTable = ignoreTable;
+    }
+
+    public DataSourceConfig getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(DataSourceConfig dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    public ContainerType getContainerType() {
+        return containerType;
+    }
+
+    public void setContainerType(ContainerType containerType) {
+        this.containerType = containerType;
+    }
+
+    public String getBaseFilePath() {
+        return baseFilePath;
+    }
+
+    public void setBaseFilePath(String baseFilePath) {
+        this.baseFilePath = baseFilePath;
+    }
+
+    public String getBasePackage() {
+        return basePackage;
+    }
+
+    public void setBasePackage(String basePackage) {
+        this.basePackage = basePackage;
+    }
+
+    public String getTemplateRootPath() {
+        return templateRootPath;
+    }
+
+    public void setTemplateRootPath(String templateRootPath) {
+        this.templateRootPath = templateRootPath;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public int getSwaggerVersion() {
+        return swaggerVersion;
+    }
+
+    public void setSwaggerVersion(int swaggerVersion) {
+        this.swaggerVersion = swaggerVersion;
+    }
+
+    public boolean isFileCover() {
+        return fileCover;
+    }
+
+    public void setFileCover(boolean fileCover) {
+        this.fileCover = fileCover;
+    }
+
+    public boolean isIgnoreView() {
+        return ignoreView;
+    }
+
+    public void setIgnoreView(boolean ignoreView) {
+        this.ignoreView = ignoreView;
     }
 }

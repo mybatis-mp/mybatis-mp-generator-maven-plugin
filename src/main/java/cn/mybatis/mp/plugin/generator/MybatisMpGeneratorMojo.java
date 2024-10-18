@@ -3,6 +3,7 @@ package cn.mybatis.mp.plugin.generator;
 import cn.mybatis.mp.generator.FastGenerator;
 import cn.mybatis.mp.generator.config.GeneratorConfig;
 import cn.mybatis.mp.plugin.generator.configuration.AbstractGeneratorConfigMojo;
+import cn.mybatis.mp.plugin.generator.configuration.DataSourceConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -49,36 +50,16 @@ public class MybatisMpGeneratorMojo extends AbstractGeneratorConfigMojo {
             return;
         }
 
-        GeneratorConfig generatorConfig = new GeneratorConfig(dataSource.getJdbcUrl(),
-                dataSource.getUsername(), dataSource.getPassword());
-        setIfPresent(containerType, generatorConfig::containerType);
-        setIfPresent(ignoreView, generatorConfig::ignoreView);
-
-        // 修改默认值
-        if (isBlank(baseFilePath)) {
-            generatorConfig.baseFilePath(project.getBasedir().getAbsolutePath());
-        } else {
-            if (baseFilePath.startsWith(File.separator)) {
-                generatorConfig.baseFilePath(baseFilePath);
-            } else {
-                generatorConfig.baseFilePath(project.getBasedir().getAbsolutePath() + File.separator + baseFilePath);
-            }
-        }
-        if (isBlank(basePackage)) {
-            generatorConfig.basePackage(project.getGroupId());
-        } else {
-            generatorConfig.basePackage(basePackage);
-        }
-
-        setIfPresent(templateRootPath, generatorConfig::templateRootPath);
-        setIfPresent(swaggerVersion, generatorConfig::swaggerVersion);
-        setIfPresent(author, generatorConfig::author);
-        setIfPresent(fileCover, generatorConfig::fileCover);
-
         GeneratorConfigProvider confProvider = new GeneratorConfigProvider(this,
                 configurationFile);
 
+        DataSourceConfig dataSource = confProvider.getDataSource();
+        GeneratorConfig generatorConfig = new GeneratorConfig(dataSource.getJdbcUrl(),
+                dataSource.getUsername(), dataSource.getPassword());
+
+        // 填充配置
         fillGeneratorConfig(generatorConfig, confProvider);
+
         if (log.isDebugEnabled()) {
             log.debug("configuration info ：===================↓↓↓=====================");
             log.debug("generatorConfig: " + objToJson(this));
@@ -105,7 +86,16 @@ public class MybatisMpGeneratorMojo extends AbstractGeneratorConfigMojo {
         }
     }
 
+    /**
+     * 填充GeneratorConfig
+     */
     private void fillGeneratorConfig(GeneratorConfig generatorConfig, GeneratorConfigProvider confProvider) {
+
+        String baseDir = project.getBasedir().getAbsolutePath();
+        // 设置直接属性默认值
+        settingDefault(generatorConfig, confProvider, baseDir);
+
+        // 设置配置属性
         ifNotNull(confProvider.getTableConfig(), generatorConfig::setTableConfig);
         ifNotNull(confProvider.getActionConfig(), generatorConfig::setActionConfig);
         ifNotNull(confProvider.getColumnConfig(), generatorConfig::setColumnConfig);
@@ -116,6 +106,50 @@ public class MybatisMpGeneratorMojo extends AbstractGeneratorConfigMojo {
         ifNotNull(confProvider.getMapperXmlConfig(), generatorConfig::setMapperXmlConfig);
         ifNotNull(confProvider.getDaoImplConfig(), generatorConfig::setDaoImplConfig);
         ifNotNull(confProvider.getServiceImplConfig(), generatorConfig::setServiceImplConfig);
+    }
+
+    /**
+     * 给GeneratorConfig设置默认值
+     */
+    private void settingDefault(GeneratorConfig generatorConfig, GeneratorConfigProvider confProvider, String baseDir) {
+        if (isBlank(confProvider.getBaseFilePath())) {
+            generatorConfig.baseFilePath(baseDir);
+        } else {
+            if (new File(confProvider.getBaseFilePath()).isAbsolute()) {
+                generatorConfig.baseFilePath(confProvider.getBaseFilePath());
+            } else {
+                generatorConfig.baseFilePath(baseDir + File.separator + confProvider.getBaseFilePath());
+            }
+        }
+
+        if (isBlank(confProvider.getJavaPath())) {
+            generatorConfig.javaPath(project.getBuild().getSourceDirectory()
+                    .replace(baseDir + File.separator, ""));
+        } else {
+            if (new File(confProvider.getJavaPath()).isAbsolute()) {
+                generatorConfig.javaPath(confProvider.getJavaPath());
+            } else {
+                generatorConfig.javaPath(baseDir + File.separator + confProvider.getJavaPath());
+            }
+        }
+
+        if (isBlank(confProvider.getResourcePath())) {
+            generatorConfig.resourcePath("src/main/resources");
+        } else {
+            if (new File(confProvider.getResourcePath()).isAbsolute()) {
+                generatorConfig.resourcePath(confProvider.getResourcePath());
+            } else {
+                generatorConfig.resourcePath(baseDir + File.separator + confProvider.getResourcePath());
+            }
+        }
+
+        setIfPresent(confProvider.getContainerType(), generatorConfig::containerType);
+        setIfPresent(confProvider.isIgnoreView(), generatorConfig::ignoreView);
+        setIfPresent(confProvider.getBasePackage(), generatorConfig::basePackage);
+        setIfPresent(confProvider.getTemplateRootPath(), generatorConfig::templateRootPath);
+        setIfPresent(confProvider.getSwaggerVersion(), generatorConfig::swaggerVersion);
+        setIfPresent(confProvider.getAuthor(), generatorConfig::author);
+        setIfPresent(confProvider.isFileCover(), generatorConfig::fileCover);
     }
 
     private <T> void ifNotNull(T t, Consumer<T> consumer) {

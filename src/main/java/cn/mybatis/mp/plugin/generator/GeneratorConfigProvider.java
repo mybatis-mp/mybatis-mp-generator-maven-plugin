@@ -2,7 +2,9 @@ package cn.mybatis.mp.plugin.generator;
 
 import cn.mybatis.mp.generator.config.*;
 import cn.mybatis.mp.plugin.generator.configuration.AbstractGeneratorConfigMojo;
+import cn.mybatis.mp.plugin.generator.configuration.DataSourceConfig;
 import cn.mybatis.mp.plugin.generator.parser.ConfigurationFileParser;
+import org.apache.maven.plugin.MojoExecutionException;
 
 import java.io.File;
 
@@ -16,59 +18,108 @@ public class GeneratorConfigProvider {
     private final AbstractGeneratorConfigMojo pomConfig;
     private final AbstractGeneratorConfigMojo fileConfig;
 
-    public GeneratorConfigProvider(AbstractGeneratorConfigMojo pomConfig, File configFile) {
+    public GeneratorConfigProvider(AbstractGeneratorConfigMojo pomConfig, File configFile) throws MojoExecutionException {
         this.pomConfig = pomConfig;
-        this.fileConfig = ConfigurationFileParser.parseConfiguration(configFile);
+        this.fileConfig = ConfigurationFileParser.parseConfiguration(configFile, pomConfig.getLog());
+    }
+
+    public DataSourceConfig getDataSource() {
+
+        return ifNullDefault(fileConfig.getDataSource(), pomConfig.getDataSource());
     }
 
     public TableConfig getTableConfig() {
 
-        return ifNullDefault(pomConfig.getTableConfig(), fileConfig.getTableConfig());
+        return ifNullDefault(fileConfig.getTableConfig(), pomConfig.getTableConfig());
     }
 
     public ColumnConfig getColumnConfig() {
 
-        return ifNullDefault(pomConfig.getColumnConfig(), fileConfig.getColumnConfig());
+        return ifNullDefault(fileConfig.getColumnConfig(), pomConfig.getColumnConfig());
     }
 
     public EntityConfig getEntityConfig() {
 
-        return ifNullDefault(pomConfig.getEntityConfig(), fileConfig.getEntityConfig());
+        return ifNullDefault(fileConfig.getEntityConfig(), pomConfig.getEntityConfig());
     }
 
     public MapperConfig getMapperConfig() {
 
-        return ifNullDefault(pomConfig.getMapperConfig(), fileConfig.getMapperConfig());
+        return ifNullDefault(fileConfig.getMapperConfig(), pomConfig.getMapperConfig());
     }
 
     public MapperXmlConfig getMapperXmlConfig() {
 
-        return ifNullDefault(pomConfig.getMapperXmlConfig(), fileConfig.getMapperXmlConfig());
+        return ifNullDefault(fileConfig.getMapperXmlConfig(), pomConfig.getMapperXmlConfig());
     }
 
     public DaoConfig getDaoConfig() {
 
-        return ifNullDefault(pomConfig.getDaoConfig(), fileConfig.getDaoConfig());
+        return ifNullDefault(fileConfig.getDaoConfig(), pomConfig.getDaoConfig());
     }
 
     public DaoImplConfig getDaoImplConfig() {
 
-        return ifNullDefault(pomConfig.getDaoImplConfig(), fileConfig.getDaoImplConfig());
+        return ifNullDefault(fileConfig.getDaoImplConfig(), pomConfig.getDaoImplConfig());
     }
 
     public ServiceConfig getServiceConfig() {
 
-        return ifNullDefault(pomConfig.getServiceConfig(), fileConfig.getServiceConfig());
+        return ifNullDefault(fileConfig.getServiceConfig(), pomConfig.getServiceConfig());
     }
 
     public ServiceImplConfig getServiceImplConfig() {
 
-        return ifNullDefault(pomConfig.getServiceImplConfig(), fileConfig.getServiceImplConfig());
+        return ifNullDefault(fileConfig.getServiceImplConfig(), pomConfig.getServiceImplConfig());
     }
 
     public ActionConfig getActionConfig() {
 
-        return ifNullDefault(pomConfig.getActionConfig(), fileConfig.getActionConfig());
+        return ifNullDefault(fileConfig.getActionConfig(), pomConfig.getActionConfig());
+    }
+
+    public String getJavaPath() {
+        return ifNullDefault(fileConfig.getJavaPath(), pomConfig.getJavaPath());
+    }
+
+    public String getResourcePath() {
+        return ifNullDefault(fileConfig.getResourcePath(), pomConfig.getResourcePath());
+    }
+
+    public boolean isIgnoreTable() {
+        return ifNullDefault(fileConfig.isIgnoreTable(), pomConfig.isIgnoreTable());
+    }
+
+    public ContainerType getContainerType() {
+        return ifNullDefault(fileConfig.getContainerType(), pomConfig.getContainerType());
+    }
+
+    public String getBaseFilePath() {
+        return ifNullDefault(fileConfig.getBaseFilePath(), pomConfig.getBaseFilePath());
+    }
+
+    public String getBasePackage() {
+        return ifNullDefault(fileConfig.getBasePackage(), pomConfig.getBasePackage());
+    }
+
+    public String getTemplateRootPath() {
+        return ifNullDefault(fileConfig.getTemplateRootPath(), pomConfig.getTemplateRootPath());
+    }
+
+    public String getAuthor() {
+        return ifNullDefault(fileConfig.getAuthor(), pomConfig.getAuthor());
+    }
+
+    public int getSwaggerVersion() {
+        return ifNullDefault(fileConfig.getSwaggerVersion(), pomConfig.getSwaggerVersion());
+    }
+
+    public boolean isFileCover() {
+        return ifNullDefault(fileConfig.isFileCover(), pomConfig.isFileCover());
+    }
+
+    public boolean isIgnoreView() {
+        return ifNullDefault(fileConfig.isIgnoreView(), pomConfig.isIgnoreView());
     }
 
     private <T> T ifNullDefault(T t, T defaultValue) {
