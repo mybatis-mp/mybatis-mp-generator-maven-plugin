@@ -152,7 +152,7 @@
 </mp-generator>
 ```
 
-### 运行maven命令 mvn  mvn mybatis-mp-generator:generate 即可
+### 运行maven命令 `mvn mybatis-mp-generator:generate` 即可
 
 ### 建议事项
 * 默认configurationFile是模块pom.xml文件目录同级下的mpGeneratorConfig.xml文件
