@@ -4,7 +4,7 @@
 ### mybatis-mp maven代码生成插件
 ### 快速开始
 #### 在pom中添加插件
-*注意除了 configurationFile 配置外，其他配置参数可以放到xml文件中, xml文件root为 `<mp-generator></mp-generator>`*
+*注意除了 configurationFile和skip 配置外，其他配置参数可以放到xml文件中, xml文件root为 `<mp-generator></mp-generator>`*
 ```xml
 <plugin>
     <groupId>cn.mybatis.mp</groupId>
