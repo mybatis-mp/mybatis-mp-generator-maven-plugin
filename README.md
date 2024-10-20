@@ -9,7 +9,7 @@
 <plugin>
     <groupId>cn.mybatis.mp</groupId>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.0</version>
     <!-- 项目中需要添加驱动 -->
     <dependencies>
         <dependency>
