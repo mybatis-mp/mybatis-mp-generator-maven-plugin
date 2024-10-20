@@ -28,6 +28,12 @@ public abstract class AbstractGeneratorConfigMojo extends AbstractMojo {
     /**
      * 是否忽略视图
      */
+    @Parameter(name = "charset", defaultValue = "utf-8")
+    private String charset;
+
+    /**
+     * 是否忽略视图
+     */
     @Parameter(name = "ignoreView", defaultValue = "false")
     private boolean ignoreView;
 
@@ -322,5 +328,13 @@ public abstract class AbstractGeneratorConfigMojo extends AbstractMojo {
 
     public void setIgnoreView(boolean ignoreView) {
         this.ignoreView = ignoreView;
+    }
+
+    public String getCharset() {
+        return charset;
+    }
+
+    public void setCharset(String charset) {
+        this.charset = charset;
     }
 }

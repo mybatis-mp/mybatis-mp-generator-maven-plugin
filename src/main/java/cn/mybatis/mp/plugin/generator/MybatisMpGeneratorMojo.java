@@ -150,6 +150,7 @@ public class MybatisMpGeneratorMojo extends AbstractGeneratorConfigMojo {
         setIfPresent(confProvider.getSwaggerVersion(), generatorConfig::swaggerVersion);
         setIfPresent(confProvider.getAuthor(), generatorConfig::author);
         setIfPresent(confProvider.isFileCover(), generatorConfig::fileCover);
+        setIfPresent(confProvider.getCharset(), generatorConfig::charset);
     }
 
     private <T> void ifNotNull(T t, Consumer<T> consumer) {

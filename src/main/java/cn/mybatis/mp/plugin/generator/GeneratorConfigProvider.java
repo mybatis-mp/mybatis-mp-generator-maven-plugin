@@ -90,6 +90,10 @@ public class GeneratorConfigProvider {
         return ifNullDefault(fileConfig.isIgnoreTable(), pomConfig.isIgnoreTable());
     }
 
+    public String getCharset() {
+        return ifNullDefault(fileConfig.getCharset(), pomConfig.getCharset());
+    }
+
     public ContainerType getContainerType() {
         return ifNullDefault(fileConfig.getContainerType(), pomConfig.getContainerType());
     }
