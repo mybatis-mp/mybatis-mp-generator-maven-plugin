@@ -4,7 +4,7 @@
     <parent>
         <groupId>cn.mybatis-mp</groupId>
         <artifactId>mybatis-mp</artifactId>
-        <version>1.7.0-RC3</version>
+        <version>1.7.0</version>
     </parent>
     <groupId>cn.mybatis-mp</groupId>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
