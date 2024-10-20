@@ -12,7 +12,7 @@
     <version>1.0.0</version>
 
     <name>mybatis-mp-generator-maven-plugin</name>
-    <url>https://gitee.com/mybatis-mp/mybatis-mp-generator-maven-plugin</url>
+    <url>https://gitee.com/mybatis-mp</url>
     <description>mybatis-mp maven代码生成插件</description>
 
     <developers>
