@@ -37,7 +37,7 @@
         <skip>false</skip>
         <author>trifolium</author>
         <ignoreView>true</ignoreView>
-<!--        <basePackage>cn.mybatis-mp</basePackage>-->
+<!--        <basePackage>com.xxx</basePackage>-->
         <!-- 按照官方文档配置各对象 -->
         <tableConfig>
             <tablePrefixs>
@@ -49,12 +49,12 @@
             </includeTables>
         </tableConfig>
         <entityConfig>
-            <packageName>cn.mybatis-mp.plugin.test.entity</packageName>
+            <packageName>com.xxx.entity</packageName>
             <swagger>true</swagger>
             <lombok>true</lombok>
         </entityConfig>
         <mapperConfig>
-            <packageName>cn.mybatis-mp.plugin.test.mapper</packageName>
+            <packageName>com.xxx.mapper</packageName>
             <mapperAnnotation>false</mapperAnnotation>
         </mapperConfig>
         <mapperXmlConfig>

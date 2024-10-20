@@ -23,7 +23,7 @@
 <!--    <javaPath>src/main/java</javaPath>-->
 <!--    <resourcePath>src/main/resources</resourcePath>-->
 
-    <basePackage>cn.mybatis.mp.plugin.test</basePackage>
+    <basePackage>com.xxx</basePackage>
 
     <entityConfig>
         <packageName>entity</packageName>
