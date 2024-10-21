@@ -4,7 +4,7 @@
 ### mybatis-mp maven代码生成插件
 ### 快速开始
 #### 在pom中添加插件
-*注意除了 configurationFile和skip 配置外，其他配置参数可以放到xml文件中, xml文件root为 `<mp-generator></mp-generator>`*
+
 ```xml
 <plugin>
     <groupId>cn.mybatis.mp</groupId>
@@ -84,6 +84,7 @@
     </configuration>
 </plugin>
 ```
+*注意除configurationFile和skip配置外，其他配置参数可以放到xml文件中, xml文件root为 `<mp-generator></mp-generator>`*
 
 ### xml文件样例
 ```xml
@@ -128,7 +129,7 @@
 
     <mapperXmlConfig>
         <enable>true</enable>
-        <packageName>/mappers</packageName>
+        <packageName>mappers</packageName>
         <resultMap>true</resultMap>
         <columnList>true</columnList>
     </mapperXmlConfig>
@@ -157,6 +158,6 @@
 ### 建议事项
 * 默认configurationFile是模块pom.xml文件目录同级下的mpGeneratorConfig.xml文件
 * 插件中 baseFilePath 默认为maven项目模块根目录(project.basedir)
-* 其中datasource, skip和configurationFile参数，必须在pom中配置，其他参数可委托到配置文件
+* 其中skip和configurationFile参数，必须在pom中配置，其他参数可委托到配置文件
 * 默认javaPath 为 src/main/java (project.build.sourceDirectory)
 * 默认resourcePath 为 src/main/resources
