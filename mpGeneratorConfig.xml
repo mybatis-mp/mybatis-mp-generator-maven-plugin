@@ -39,7 +39,7 @@
 
     <mapperXmlConfig>
         <enable>true</enable>
-        <packageName>/mappers</packageName>
+        <packageName>mappers</packageName>
         <resultMap>true</resultMap>
         <columnList>true</columnList>
     </mapperXmlConfig>
