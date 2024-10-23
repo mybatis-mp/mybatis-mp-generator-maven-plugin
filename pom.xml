@@ -6,7 +6,6 @@
         <artifactId>mybatis-mp</artifactId>
         <version>1.7.1</version>
     </parent>
-    <groupId>cn.mybatis-mp</groupId>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
     <version>1.0.1</version>
@@ -25,8 +24,7 @@
     </developers>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.release>8</maven.compiler.release>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <junit.version>5.10.2</junit.version>
         <maven.plugin.version>3.9.0</maven.plugin.version>
@@ -64,7 +62,7 @@
             <artifactId>xstream</artifactId>
             <version>1.4.20</version>
         </dependency>
-        
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
