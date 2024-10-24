@@ -155,6 +155,17 @@
 
 ### 运行maven命令 `mvn mybatis-mp-generator:generate` 即可
 
+### 如何指定 mybatis-mp-generator 版本
+在 plugin > dependencies 节点下 添加
+```xml
+<dependency>
+    <groupId>cn.mybatis-mp</groupId>
+    <artifactId>mybatis-mp-generator</artifactId>
+    <version>1.7.2</version>
+</dependency>
+```
+
+
 ### 建议事项
 * 默认configurationFile是模块pom.xml文件目录同级下的mpGeneratorConfig.xml文件
 * 插件中 baseFilePath 默认为maven项目模块根目录(project.basedir)
