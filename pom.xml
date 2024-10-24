@@ -4,11 +4,11 @@
     <parent>
         <groupId>cn.mybatis-mp</groupId>
         <artifactId>mybatis-mp</artifactId>
-        <version>1.7.1</version>
+        <version>1.7.2</version>
     </parent>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <name>mybatis-mp-generator-maven-plugin</name>
     <url>https://gitee.com/mybatis-mp</url>
@@ -55,6 +55,11 @@
         <dependency>
             <groupId>cn.mybatis-mp</groupId>
             <artifactId>mybatis-mp-generator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
 
         <dependency>

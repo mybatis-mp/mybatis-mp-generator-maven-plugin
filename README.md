@@ -9,7 +9,7 @@
 <plugin>
     <groupId>cn.mybatis.mp</groupId>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <!-- 项目中需要添加驱动 -->
     <dependencies>
         <dependency>
@@ -40,9 +40,9 @@
 <!--        <basePackage>com.xxx</basePackage>-->
         <!-- 按照官方文档配置各对象 -->
         <tableConfig>
-            <tablePrefixs>
+            <tablePrefixes>
                 <string>t_</string>
-            </tablePrefixs>
+            </tablePrefixes>
             <includeTables>
                 <string>t_admin</string>
                 <string>t_admin_role</string>
@@ -101,9 +101,9 @@
     </dataSource>
     
     <tableConfig>
-        <tablePrefixs>
+        <tablePrefixes>
             <string>t_</string>
-        </tablePrefixs>
+        </tablePrefixes>
         <includeTables>
             <string>t_admin</string>
             <string>t_admin_role</string>
