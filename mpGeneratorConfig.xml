@@ -11,9 +11,9 @@
     </dataSource>
 
     <tableConfig>
-        <tablePrefixs>
+        <tablePrefixes>
             <string>t_</string>
-        </tablePrefixs>
+        </tablePrefixes>
         <includeTables>
             <string>t_admin</string>
             <string>t_admin_role</string>
