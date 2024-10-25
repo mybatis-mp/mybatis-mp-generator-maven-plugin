@@ -1,6 +1,6 @@
 package cn.mybatis.mp.plugin.generator;
 
-import cn.mybatis.mp.generator.config.*;
+import cn.mybatis.mp.generator.core.config.*;
 import cn.mybatis.mp.plugin.generator.configuration.AbstractGeneratorConfigMojo;
 import cn.mybatis.mp.plugin.generator.configuration.DataSourceConfig;
 import cn.mybatis.mp.plugin.generator.parser.ConfigurationFileParser;

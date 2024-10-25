@@ -1,7 +1,7 @@
 package cn.mybatis.mp.plugin.generator;
 
-import cn.mybatis.mp.generator.FastGenerator;
-import cn.mybatis.mp.generator.config.GeneratorConfig;
+import cn.mybatis.mp.generator.core.FastGenerator;
+import cn.mybatis.mp.generator.core.config.GeneratorConfig;
 import cn.mybatis.mp.plugin.generator.configuration.AbstractGeneratorConfigMojo;
 import cn.mybatis.mp.plugin.generator.configuration.DataSourceConfig;
 import org.apache.commons.lang3.StringUtils;

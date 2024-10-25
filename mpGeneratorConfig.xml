@@ -7,23 +7,20 @@
     <dataSource>
         <username>root</username>
         <password>123456</password>
-        <jdbcUrl>jdbc:mysql://xxx:3306/xxx</jdbcUrl>
+        <jdbcUrl>jdbc:mysql://localhost:3306/test3</jdbcUrl>
     </dataSource>
 
     <tableConfig>
         <tablePrefixes>
             <string>t_</string>
         </tablePrefixes>
-        <includeTables>
-            <string>t_admin</string>
-            <string>t_admin_role</string>
-        </includeTables>
     </tableConfig>
 
 <!--    <javaPath>src/main/java</javaPath>-->
 <!--    <resourcePath>src/main/resources</resourcePath>-->
 
     <basePackage>com.xxx</basePackage>
+    <baseFilePath>./autogen</baseFilePath>
 
     <entityConfig>
         <packageName>entity</packageName>

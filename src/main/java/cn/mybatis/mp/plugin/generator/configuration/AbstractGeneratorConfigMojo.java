@@ -1,6 +1,6 @@
 package cn.mybatis.mp.plugin.generator.configuration;
 
-import cn.mybatis.mp.generator.config.*;
+import cn.mybatis.mp.generator.core.config.*;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Parameter;
 

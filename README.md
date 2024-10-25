@@ -9,7 +9,7 @@
 <plugin>
     <groupId>cn.mybatis.mp</groupId>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <!-- 项目中需要添加驱动 -->
     <dependencies>
         <dependency>
@@ -18,9 +18,9 @@
             <version>8.4.0</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>5.3.31</version>
+            <groupId>cn.mybatis-mp</groupId>
+            <artifactId>mybatis-mp-generator-core</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
     <configuration>
@@ -159,17 +159,6 @@
 ```
 
 ### 运行maven命令 `mvn mybatis-mp-generator:generate` 即可
-
-### 如何指定 mybatis-mp-generator 版本
-在 plugin > dependencies 节点下 添加
-```xml
-<dependency>
-    <groupId>cn.mybatis-mp</groupId>
-    <artifactId>mybatis-mp-generator</artifactId>
-    <version>1.7.2</version>
-</dependency>
-```
-
 
 ### 建议事项
 * 默认configurationFile是模块pom.xml文件目录同级下的mpGeneratorConfig.xml文件
