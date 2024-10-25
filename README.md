@@ -10,17 +10,12 @@
     <groupId>cn.mybatis.mp</groupId>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
     <version>1.0.3</version>
-    <!-- 项目中需要添加驱动 -->
+    <!-- 添加响应数据库的驱动 -->
     <dependencies>
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <version>8.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.mybatis-mp</groupId>
-            <artifactId>mybatis-mp-generator-core</artifactId>
-            <version>1.0.0</version>
         </dependency>
     </dependencies>
     <configuration>
@@ -159,6 +154,23 @@
 ```
 
 ### 运行maven命令 `mvn mybatis-mp-generator:generate` 即可
+
+### 如需指定的mybatis-mp-generator-core版本，请在插件plugin中添加依赖
+```xml
+<plugin>
+    <groupId>cn.mybatis.mp</groupId>
+    <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
+    <version>最新版本</version>
+    <!-- 项目中需要添加驱动 -->
+    <dependencies>
+        <dependency>
+            <groupId>cn.mybatis-mp</groupId>
+            <artifactId>mybatis-mp-generator-core</artifactId>
+            <version>指定版本</version>
+        </dependency>
+    </dependencies>
+</plugin>
+```
 
 ### 建议事项
 * 默认configurationFile是模块pom.xml文件目录同级下的mpGeneratorConfig.xml文件
