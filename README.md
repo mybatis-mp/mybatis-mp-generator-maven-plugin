@@ -18,6 +18,25 @@
             <version>8.4.0</version>
         </dependency>
     </dependencies>
+</plugin>
+```
+
+### 两种配置方式
+
+#### 一. 在pom文件中配置
+```xml
+<plugin>
+    <groupId>cn.mybatis.mp</groupId>
+    <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
+    <version>xxx</version>
+    <!-- 添加响应数据库的驱动 -->
+    <dependencies>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.4.0</version>
+        </dependency>
+    </dependencies>
     <configuration>
 
         <!-- 指定xml配置文件的路径,可直接使用配置文件，不用在插件的configuration中配置了 -->
@@ -84,8 +103,9 @@
     </configuration>
 </plugin>
 ```
-*注意除configurationFile和skip配置外，其他配置参数可以放到xml文件中, xml文件root为 `<mp-generator></mp-generator>`*
 
+#### 二. 在外部xml文件中配置(推荐)
+*注意除configurationFile和skip配置外，其他配置参数可以放到xml文件中, xml文件root为 `<mp-generator></mp-generator>`*
 ### xml文件样例
 ```xml
 <mp-generator>
