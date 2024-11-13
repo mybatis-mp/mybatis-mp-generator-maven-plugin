@@ -12,7 +12,7 @@
 <plugin>
     <groupId>cn.mybatis.mp</groupId>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.7-RC</version>
     <!-- 添加响应数据库的驱动 -->
     <dependencies>
         <dependency>
