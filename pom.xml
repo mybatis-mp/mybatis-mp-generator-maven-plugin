@@ -8,7 +8,7 @@
     </parent>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>1.0.7-RC3</version>
+    <version>1.0.7</version>
 
     <name>mybatis-mp-generator-maven-plugin</name>
     <url>https://gitee.com/mybatis-mp</url>
@@ -95,7 +95,7 @@
                     <dependency>
                         <groupId>com.mysql</groupId>
                         <artifactId>mysql-connector-j</artifactId>
-                        <version>8.4.0</version>
+                        <version>9.1.0</version>
                     </dependency>
                 </dependencies>
             </plugin>

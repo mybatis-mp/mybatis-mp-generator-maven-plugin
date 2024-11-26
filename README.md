@@ -12,13 +12,13 @@
 <plugin>
     <groupId>cn.mybatis.mp</groupId>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
-    <version>1.0.7-RC3</version>
+    <version>1.0.7</version>
     <!-- 添加响应数据库的驱动 -->
     <dependencies>
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <version>8.4.0</version>
+            <version>9.1.0</version>
         </dependency>
     </dependencies>
 </plugin>
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <version>8.4.0</version>
+            <version>9.1.0</version>
         </dependency>
     </dependencies>
     <configuration>
@@ -141,7 +141,7 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <version>8.4.0</version>
+            <version>9.1.0</version>
         </dependency>
     </dependencies>
     <configuration>
