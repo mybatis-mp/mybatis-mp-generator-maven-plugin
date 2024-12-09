@@ -13,7 +13,7 @@
     <groupId>cn.mybatis.mp</groupId>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
     <version>1.0.8</version>
-    <!-- 添加响应数据库的驱动 -->
+    <!-- 添加相应的数据库驱动 -->
     <dependencies>
         <dependency>
             <groupId>com.mysql</groupId>
@@ -24,7 +24,7 @@
 </plugin>
 ```
 
-### 2. 相关配置 - 两种
+### 2. 相关配置 - 两种配置方式
 
 #### 2.1. 在外部xml文件中配置(推荐)
 
@@ -37,7 +37,7 @@
 </mp-generator>
 ```
 
-##### 2.1.1. pom.xml 文件配置
+##### 2.1.1. 配置maven插件
 
 ```xml
 
@@ -45,7 +45,7 @@
     <groupId>cn.mybatis.mp</groupId>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
     <version>最新版本</version>
-    <!-- 添加响应数据库的驱动 -->
+    <!-- 添加相应数据库的驱动 -->
     <dependencies>
         <dependency>
             <groupId>com.mysql</groupId>
@@ -54,7 +54,7 @@
         </dependency>
     </dependencies>
     <configuration>
-        <!-- 指定xml配置文件的路径,可直接使用配置文件，不用在插件的configuration中配置了 -->
+        <!-- 指定xml配置文件的路径,可直接使用配置文件 -->
         <!-- 优先级， 配置文件的优先级大于 pom文件中的配置 -->
         <configurationFile>src/main/resources/mpGeneratorConfig.xml</configurationFile>
     </configuration>
@@ -136,7 +136,7 @@
     <groupId>cn.mybatis.mp</groupId>
     <artifactId>mybatis-mp-generator-maven-plugin</artifactId>
     <version>最新版本</version>
-    <!-- 添加响应数据库的驱动 -->
+    <!-- 添加相应数据库的驱动 -->
     <dependencies>
         <dependency>
             <groupId>com.mysql</groupId>
@@ -145,7 +145,7 @@
         </dependency>
     </dependencies>
     <configuration>
-        <!-- 添加数据库配置，如果项目中已经包含可省略 -->
+        <!-- 添加数据库配置 -->
         <dataSource>
             <username>xxx</username>
             <password>xxx</password>
@@ -224,7 +224,7 @@
 </plugin>
 ```
 
-### 6. 建议事项
+### 6. 注意事项
 * 默认configurationFile是模块pom.xml文件目录同级下的mpGeneratorConfig.xml文件
 * 插件中 baseFilePath 默认为maven项目模块根目录(project.basedir)
 * 其中skip和configurationFile参数，必须在pom中配置，其他参数可委托到配置文件
